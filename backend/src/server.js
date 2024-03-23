@@ -50,6 +50,15 @@ mongoose.connect('mongodb+srv://Samitti:Sam1984@cluster0.u6jymdm.mongodb.net/not
         };
         res.json(response);
     });
+    
+    app.delete('/notes/delete',async function(req, res){
+        var deleteNote = await Note.deleteOne({id: req.body.id});
+        var response = {
+            message: `Note with id: ${req.body.id} deleted successfully`,
+            note: deleteNote,
+        };
+        res.json(response);
+    });
 });
 
 app.listen('3000', ()=>{
